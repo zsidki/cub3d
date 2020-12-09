@@ -6,7 +6,7 @@
 #    By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/04 11:25:05 by zsidki            #+#    #+#              #
-#    Updated: 2020/12/08 13:57:58 by zsidki           ###   ########.fr        #
+#    Updated: 2020/12/09 13:02:58 by zsidki           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,3 +30,8 @@ fclean: clean
 	@rm -rf $(NAME)
 
 re: fclean all
+
+push:
+	@git add .
+	@git commit -m "$(m)"
+	@git push origin main
