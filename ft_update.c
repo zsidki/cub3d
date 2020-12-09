@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rander_map.c                                    :+:      :+:    :+:   */
+/*   ft_update.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 13:25:21 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/09 20:12:28 by zsidki           ###   ########.fr       */
+/*   Created: 2020/12/09 20:11:44 by zsidki            #+#    #+#             */
+/*   Updated: 2020/12/09 20:43:48 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int			ft_render_map(void)
+
+int     ft_update(void)
 {
-	int i;
-	int j;
-	int imap;
-	int jmap;
+    mlx_clear_window(g_mlx_ptr, g_win_ptr);
+	ft_render_map();
+	ft_render_player();
+	ft_castAllRays();
 
-	i = 0;
-	j = 0;
-	imap = 0;
-	jmap = 0;
-
-	while (imap < MAPWIDTH)
-	{
-		j = 0;
-		jmap = 0;
-		while (jmap < MAPHEIGHT)
-		{
-			if (Map[jmap][imap] != 0)
-				ft_render_box(i, j);
-			jmap++;
-			j += TILE_SIZE;
-		}
-		i += TILE_SIZE;
-		imap++;
-	}
-	return (0);
+    return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:02:29 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/04 19:09:03 by zsidki           ###   ########.fr       */
+/*   Updated: 2020/12/09 20:45:43 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,10 @@ int     main()
 
 
 	g_mlx_ptr = mlx_init();
-	g_win_ptr = mlx_new_window(g_mlx_ptr, SCREENWIDTH, SCREENHEIGHT, "Cub3d");
-	g_img = mlx_new_image(g_mlx_ptr,SCREENWIDTH,SCREENHEIGHT);
-	//int *data = (int*)mlx_get_data_addr(g_img,&i,&i,&i);
-	//mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
-	ft_render_box(x,y);
-	ft_render_player();
-	ft_castAllRays();
-
-	mlx_loop_hook(g_mlx_ptr, ft_render_map, NULL);
-	//ft_render_box(x,y);
-	//ft_render_map();
-
-	//printf("x = %f\n", player.x);
-
+	g_win_ptr = mlx_new_window(g_mlx_ptr, SCREENWIDTH, SCREENHEIGHT, "cub3D");
+	ft_update();
 	mlx_key_hook(g_win_ptr, deal_key, (void *)0);
-	mlx_put_image_to_window(g_mlx_ptr,g_win_ptr,g_img,0,0);
+	
 	mlx_loop(g_mlx_ptr);
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 11:27:04 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/04 19:08:08 by zsidki           ###   ########.fr       */
+/*   Updated: 2020/12/09 20:21:46 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ int         ft_render_player(void);
 int         deal_key(int key, void *param);
 int         Map[MAPHEIGHT][MAPWIDTH];
 void        ft_castAllRays(void);
+int         ft_update(void);
 
 #endif

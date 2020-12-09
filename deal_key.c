@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:35:12 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/04 12:15:29 by zsidki           ###   ########.fr       */
+/*   Updated: 2020/12/09 20:30:31 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,37 +21,37 @@ int		deal_key(int key, void *param)
 	{
 		player.walkDirection = -1;
 		player.x -= WALKSTEP;
+		ft_update();
 	}//a
 	if (key == 1)
 	{
 		player.walkDirection = -1;
 		player.y -= WALKSTEP * sin(player.rotationAngle);
 		player.x -= WALKSTEP * cos(player.rotationAngle);
+		ft_update();
 	}//s
 	if (key == 2)
 	{
 		player.walkDirection = +1;
 		player.x += WALKSTEP;
+		ft_update();
 	}//d
 	if (key == 13)
 	{
 		player.walkDirection = +1;
 		player.y += WALKSTEP * sin(player.rotationAngle);
 		player.x += WALKSTEP * cos(player.rotationAngle);
+		ft_update();
 	}//w
 	if (key == 123)
 	{
-		player.rotationAngle -= 20 * M_PI / 180;
+		player.rotationAngle -= 5 * M_PI / 180;
+		ft_update();
 	}//arrow lift
 	if (key == 124)
 	{
-		player.rotationAngle += 20 * M_PI / 180;
+		player.rotationAngle += 5 * M_PI / 180;
+		ft_update();
 	}//arrow right
-	mlx_destroy_image(g_mlx_ptr, g_img);
-	g_img = mlx_new_image(g_mlx_ptr, SCREENWIDTH, SCREENHEIGHT);
-	mlx_put_image_to_window(g_mlx_ptr, g_win_ptr, g_img, 0, 0);
-	ft_render_map();
-	ft_render_player();
-	ft_castAllRays();
 	return (0);
 }
