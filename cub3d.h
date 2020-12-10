@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 11:27:04 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/09 20:21:46 by zsidki           ###   ########.fr       */
+/*   Updated: 2020/12/10 12:38:25 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define MAPHEIGHT 15
 # define TILE_SIZE 32
 # define PLAYERR 2
-# define WALKSTEP 10
+# define WALKSTEP 3
 # define FOV_ANGLE 60 * (M_PI / 180)
 
 
@@ -32,6 +32,7 @@ void    *g_win_ptr;
 void    *g_img;
 void	*param;
 int     g_num_rays;
+int     g_keys[7];
 
 typedef struct s_player
 {
@@ -63,9 +64,12 @@ int         ft_checkwall(float x, float y, int i);
 int         ft_render_box(int x, int y);
 int         ft_render_map(void);
 int         ft_render_player(void);
-int         deal_key(int key, void *param);
+int         deal_key(int key);
 int         Map[MAPHEIGHT][MAPWIDTH];
 void        ft_castAllRays(void);
 int         ft_update(void);
+void        my_pixel_put(void *img, int x, int y, int color);
+int			key_release(int key);
+int			key_press(int key);
 
 #endif

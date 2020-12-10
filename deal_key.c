@@ -6,52 +6,90 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:35:12 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/09 20:30:31 by zsidki           ###   ########.fr       */
+/*   Updated: 2020/12/10 13:22:04 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		deal_key(int key, void *param)
+
+static	void	reset_key(void) //close windows from red x
 {
-	param = NULL;
-	if (key == 53)
-		exit(0);
-	if (key == 0)
-	{
-		player.walkDirection = -1;
-		player.x -= WALKSTEP;
-		ft_update();
-	}//a
-	if (key == 1)
-	{
-		player.walkDirection = -1;
-		player.y -= WALKSTEP * sin(player.rotationAngle);
-		player.x -= WALKSTEP * cos(player.rotationAngle);
-		ft_update();
-	}//s
-	if (key == 2)
-	{
-		player.walkDirection = +1;
-		player.x += WALKSTEP;
-		ft_update();
-	}//d
+	int i;
+
+	i = 0;
+	while (i < 7)
+		g_keys[i++] = 0;
+}
+
+int				key_release(int key) // tableau [0,0,0,0,0,0,0] keep keys numbers in orders
+{
+	if (key == 260 || key == 259)
+		reset_key();
 	if (key == 13)
-	{
-		player.walkDirection = +1;
-		player.y += WALKSTEP * sin(player.rotationAngle);
-		player.x += WALKSTEP * cos(player.rotationAngle);
-		ft_update();
-	}//w
+		g_keys[0] = 0;
+	if (key == 1)
+		g_keys[1] = 0;
+	if (key == 0)
+		g_keys[2] = 0;
+	if (key == 2)
+		g_keys[3] = 0;
 	if (key == 123)
-	{
-		player.rotationAngle -= 5 * M_PI / 180;
-		ft_update();
-	}//arrow lift
+		g_keys[4] = 0;
 	if (key == 124)
-	{
-		player.rotationAngle += 5 * M_PI / 180;
-		ft_update();
-	}//arrow right
+		g_keys[5] = 0;
+	return (key);
+}
+
+int				key_press(int key)
+{
+	if (key == 13)
+		g_keys[0] = key;
+	if (key == 1)
+		g_keys[1] = key;
+	if (key == 0)
+		g_keys[2] = -5;
+	if (key == 2)
+		g_keys[3] = key;
+	if (key == 123)
+		g_keys[4] = key;
+	if (key == 124)
+		g_keys[5] = key;
+	if (key == 53)
+		g_keys[6] = key;
+	return (key);
+}
+
+int		deal_key(int key)
+{
+		if (key == 53)
+			exit(0);
+		if (key == -5)
+		{
+			player.walkDirection = -1;
+			player.x -= WALKSTEP;
+		}//a
+		if (key == 1)
+		{
+			player.walkDirection = -1;
+			player.y -= WALKSTEP * sin(player.rotationAngle);
+			player.x -= WALKSTEP * cos(player.rotationAngle);
+		}//s
+		if (key == 2)
+		{
+			player.walkDirection = +1;
+			player.x += WALKSTEP;
+		}//d
+		if (key == 13)
+		{
+			player.walkDirection = +1;
+			player.y += WALKSTEP * sin(player.rotationAngle);
+			player.x += WALKSTEP * cos(player.rotationAngle);
+		}//w
+		if (key == 123)
+			player.rotationAngle -= 5 * M_PI / 180; //arrow lift
+		if (key == 124)
+			player.rotationAngle += 5 * M_PI / 180; //arrow right
+
 	return (0);
 }

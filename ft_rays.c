@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 14:16:47 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/09 20:07:35 by zsidki           ###   ########.fr       */
+/*   Updated: 2020/12/10 11:37:12 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@
     {
         line = 600;
 	    while (line--)
-	{
+        {
             r1 = (player.x  + PLAYERR) + line * cos(rays[i].angle);
             r2 = (player.y  + PLAYERR) + line * sin(rays[i].angle);
-            mlx_pixel_put(g_mlx_ptr, g_win_ptr, r1, r2, color);
-    }
+            my_pixel_put(g_img, r1, r2, color);
+        }
         i++;
     }
 }

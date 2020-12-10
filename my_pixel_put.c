@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rander_box.c                                    :+:      :+:    :+:   */
+/*   my_pixel_put.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 13:36:05 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/10 11:36:01 by zsidki           ###   ########.fr       */
+/*   Created: 2020/12/10 11:24:13 by zsidki            #+#    #+#             */
+/*   Updated: 2020/12/10 11:28:48 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_render_box(int x, int y)
-{
-	int i;
-	int j;
-	int color;
 
-	i = x;
-	j = y;
-	while (i <= TILE_SIZE + x)
-	{
-		j = y;
-		while (j <= TILE_SIZE + y)
-		{
-			color = 0xFFFF00;
-			my_pixel_put(g_img, i, j, color);
-			j++;
-		}
-		i++;
-	}
-	return (0);
+void    my_pixel_put(void *img, int x, int y, int color)
+{
+    int bits_per_pixel;
+    int size_line;
+    int endian;
+    int *var;
+
+    var = (int*)mlx_get_data_addr(img, &bits_per_pixel, &size_line, &endian);
+    if (x < SCREENWIDTH && x >= 0 && y < SCREENHEIGHT && y >= 0)
+    var[x + y * size_line / 4] = color;
 }
