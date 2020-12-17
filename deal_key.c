@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:35:12 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/10 13:22:04 by zsidki           ###   ########.fr       */
+/*   Updated: 2020/12/17 11:55:49 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,34 +62,52 @@ int				key_press(int key)
 
 int		deal_key(int key)
 {
+		int x;
+		int y;
 		if (key == 53)
 			exit(0);
 		if (key == -5)
 		{
 			player.walkDirection = -1;
-			player.x -= WALKSTEP;
+			x = (player.x - 3 * WALKSTEP)  / TILE_SIZE;
+			y = (player.y / TILE_SIZE);
+			if (Map[y][x] != 1)
+				player.x -= WALKSTEP;
 		}//a
 		if (key == 1)
 		{
 			player.walkDirection = -1;
-			player.y -= WALKSTEP * sin(player.rotationAngle);
-			player.x -= WALKSTEP * cos(player.rotationAngle);
+			y = (player.y - 3 * WALKSTEP * sin(player.rotationAngle)) / TILE_SIZE;
+			x = (player.x - 3 * WALKSTEP * cos(player.rotationAngle)) / TILE_SIZE;
+			if (Map[y][x] != 1)
+			{
+				player.y -= WALKSTEP * sin(player.rotationAngle);
+				player.x -= WALKSTEP * cos(player.rotationAngle);
+			}
 		}//s
 		if (key == 2)
 		{
 			player.walkDirection = +1;
-			player.x += WALKSTEP;
+			x = (player.x + 3 * WALKSTEP) / TILE_SIZE;
+			y = (player.y / TILE_SIZE);
+			if (Map[y][x] != 1)
+				player.x += WALKSTEP;
 		}//d
 		if (key == 13)
 		{
 			player.walkDirection = +1;
-			player.y += WALKSTEP * sin(player.rotationAngle);
-			player.x += WALKSTEP * cos(player.rotationAngle);
+			y = (player.y + 3 * WALKSTEP * sin(player.rotationAngle)) / TILE_SIZE;
+			x = (player.x + 3 * WALKSTEP * cos(player.rotationAngle)) / TILE_SIZE;
+			if (Map[y][x] != 1)
+			{
+				player.y += WALKSTEP * sin(player.rotationAngle);
+				player.x += WALKSTEP * cos(player.rotationAngle);
+			}
 		}//w
 		if (key == 123)
 			player.rotationAngle -= 5 * M_PI / 180; //arrow lift
 		if (key == 124)
-			player.rotationAngle += 5 * M_PI / 180; //arrow right
+		player.rotationAngle += 5 * M_PI / 180; //arrow right
 
 	return (0);
 }
