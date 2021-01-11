@@ -6,12 +6,11 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 11:24:13 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/10 11:28:48 by zsidki           ###   ########.fr       */
+/*   Updated: 2020/12/20 02:31:54 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void    my_pixel_put(void *img, int x, int y, int color)
 {
