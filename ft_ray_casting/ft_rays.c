@@ -6,13 +6,13 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 14:16:47 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/11 19:49:11 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/01/22 17:48:57 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_rays()
+void			draw_rays(void)
 {
 	int line;
 	int r1;
@@ -27,15 +27,15 @@ static void	draw_rays()
 		line = rays[i].dist;
 		while (line--)
 		{
-			r1 = (player.x  + PLAYERR) + line * cos(rays[i].angle);
-			r2 = (player.y  + PLAYERR) + line * sin(rays[i].angle);
+			r1 = (player.x + PLAYERR) + line * cos(rays[i].angle);
+			r2 = (player.y + PLAYERR) + line * sin(rays[i].angle);
 			my_pixel_put(g_img, r1, r2, color);
 		}
 		i++;
 	}
 }
 
-static	t_ray	direction_ray(float angle, int n_ray)
+static	t_ray		direction_ray(float angle, int n_ray)
 {
 	t_ray		ray;
 
@@ -69,10 +69,9 @@ static	void	cast_ray(t_ray ray, int ray_count)
 		rays[ray_count].was_hit_vertical = 1;
 	else
 		rays[ray_count].was_hit_vertical = 0;
-
 }
 
-void   ft_castAllRays(void)
+void		ft_castAllRays(void)
 {
 	int i;
 
@@ -81,9 +80,9 @@ void   ft_castAllRays(void)
 	cast_ray(direction_ray(rays[0].angle, 0), 0);
 	while (i < g_num_rays)
 	{
-		rays[i].angle = normalize_angle(rays[i - 1].angle + (FOV_ANGLE / g_num_rays));
+		rays[i].angle = normalize_angle(rays[i - 1].angle +
+		(FOV_ANGLE / g_num_rays));
 		cast_ray(direction_ray(rays[i].angle, i), i);
 		i++;
 	}
-	draw_rays();
 }

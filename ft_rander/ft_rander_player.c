@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:28:09 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/10 11:36:35 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/01/12 17:51:01 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_render_player(void)
 			my_pixel_put(g_img, i, j, color);
 
 			int line;
-			line = 40;
+			line = 0;
 			while (line--)
 			{
 				x1 = (player.x + PLAYERR) + line * cos(player.rotationAngle);

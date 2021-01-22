@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rander_map.c                                    :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 13:25:21 by zsidki            #+#    #+#             */
-/*   Updated: 2020/12/09 20:12:28 by zsidki           ###   ########.fr       */
+/*   Created: 2019/11/10 15:15:26 by zsidki            #+#    #+#             */
+/*   Updated: 2019/11/18 20:58:39 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
-int			ft_render_map(void)
-{
-	int i;
-	int j;
-	int imap;
-	int jmap;
+size_t			ft_strlen(const char *str);
+int				get_next_line(int fd, char **line);
+char			*ft_strdup(const char *s1);
+char			*ft_strchr(const char *s, int c);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*ft_strjoin(char const *s1, char const *s2);
 
-	i = 0;
-	j = 0;
-	imap = 0;
-	jmap = 0;
-
-	while (imap < MAPWIDTH)
-	{
-		j = 0;
-		jmap = 0;
-		while (jmap < MAPHEIGHT)
-		{
-			if (Map[jmap][imap] != 0)
-				ft_render_box(i, j);
-			jmap++;
-			j += TILE_SIZE;
-		}
-		i += TILE_SIZE;
-		imap++;
-	}
-	return (0);
-}
+#endif

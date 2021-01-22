@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 19:14:03 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/11 19:36:23 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/01/22 12:38:35 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static t_cast	calculate_steps(t_cast cast, t_ray ray)
 {
-	cast.yinterept = floor(player.y / TILE_SIZE) * TILE_SIZE;
-	cast.yinterept += (ray.is_down ? TILE_SIZE : 0);
+	cast.yinterept = floor(player.y / g_tile) * g_tile;
+	cast.yinterept += (ray.is_down ? g_tile : 0);
 	cast.xinterept = player.x + ((-cast.yinterept + player.y)
 			/ tan(-ray.angle));
-	cast.ystep = TILE_SIZE;
+	cast.ystep = g_tile;
 	cast.ystep *= ray.is_up ? -1 : 1;
 	cast.xstep = cast.ystep / tan(-ray.angle);
 	cast.next_touch_x = cast.xinterept;
@@ -32,8 +32,8 @@ static t_cast	calculate_steps(t_cast cast, t_ray ray)
 
 static t_cast	increment_steps(t_cast cast)
 {
-	while (cast.next_touch_x >= 0 && cast.next_touch_x <= TILE_SIZE * MAPWIDTH
-		&& cast.next_touch_y >= 0 && cast.next_touch_y <= TILE_SIZE * MAPHEIGHT)
+	while (cast.next_touch_x >= 0 && cast.next_touch_x <= g_tile * g_map.w
+		&& cast.next_touch_y >= 0 && cast.next_touch_y <= g_tile * g_map.h)
 	{
 		if (has_wall(cast.next_touch_x, cast.next_touch_y - cast.minus_y) == 1)
 		{
