@@ -6,23 +6,23 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 18:59:32 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/22 12:38:35 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/01/31 17:08:55 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// int		finalize(void *s)
-// {
-// 	s = NULL;
-// 	mlx_destroy_image(g_cub.ptr, g_pl_img.img);
-// 	mlx_destroy_window(g_cub.ptr, g_cub.win);
-// 	free(rays);
-// 	free(g_sprites);
-// 	free(g_map.map);
-// 	exit(EXIT_SUCCESS);
-// 	return (0);
-// }
+	
+int		finalize(void *s)
+{
+	s = NULL;
+	mlx_destroy_image(g_cub.ptr, g_pl_img.img);
+	mlx_destroy_window(g_cub.ptr, g_cub.win);
+	free(rays);
+	free(g_sprites);
+	free(g_map.map);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
 
 int		ft_perror(const char *s)
 {

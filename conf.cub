@@ -1,9 +1,9 @@
 R 960  640
 
-    NO    Textures/brick_no.xpm
- SO Textures/brick_so.xpm
-WE Textures/brick_we.xpm          
-EA Textures/brick_ea.xpm
+NO textures/brick_no.xpm
+SO textures/brick_so.xpm
+WE textures/brick_we.xpm          
+EA textures/brick_ea.xpm
 
 S Textures/sprite.xpm
 
@@ -30,4 +30,4 @@ C 5, 105, 200
 100000000000000000000100000001
 100000000000000000000100000001
 100000000000000000000100000001
-111111111111111111111111111111
+111111111111111111111111111111 

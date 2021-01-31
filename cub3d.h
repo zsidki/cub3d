@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 11:27:04 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/22 17:49:03 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/01/31 16:58:34 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_player
     float   moveStep;
     float   oldx;
     float   oldy;
+	float	fov;
 
 }           t_player;
 
@@ -147,13 +148,9 @@ typedef struct	s_texture
 	int			h;
 	int			size_line;
 }				t_texture;
-typedef	struct	s_img_bmp
-{
-	char		*data;
-	int			bits_per_pixel;
-	int			size_line;
-	int			endian;
-}				t_img_bmp;
+
+
+
 typedef	struct	s_sp_cast
 {
 	int			hit_horz;
@@ -175,6 +172,17 @@ typedef struct	s_sprite
 	double		angle;
 }				t_sprite;
 
+typedef	struct	s_img_bmp
+{
+	int			h;
+	int			w;
+	void		*img;
+	char		*data;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+}				t_img_bmp;
+
 t_player    	player;
 t_rays      	*rays;
 t_cub			g_cub;
@@ -186,53 +194,53 @@ t_texture		g_text_so;
 t_texture		g_text_we;
 t_texture		g_text_ea;
 t_sprite		*g_sprites;
+t_img_bmp		g_pl_img;
 
-int         ft_checkwall(float x, float y, int i);
-int         ft_render_box(int x, int y, int color);
-int         ft_render_map(void);
-int         ft_render_player(void);
-int         deal_key(int key);
-void        ft_castAllRays(void);
-int         ft_update(void);
-void        my_pixel_put(void *img, int x, int y, int color);
-int			key_release(int key);
-t_cast		vertical_intersections(t_ray ray);
-t_cast	    horizontal_intersections(t_ray ray);
-int			key_press(int key);
-int		    has_wall(int x, int y);
 
-// t_intersection      vertical(double alphaa);
-float       normalize_angle(float angle);
-float	    dist(float x1, float y1, float x2, float y2);
-int			ft_perror(const char *s);
-void        generate3DProjection();
-void		create_strip_height(float tab[], int color);
-void		create_strip_wall(float tab[], int offset_x, int n_ray);
-int			is_player(char c);
-void		get_position_player(char c, int pos_x, int pos_y);
-int			is_all_elem(void);
-void		reset_elem_conf(void);
-void		import_data(void);
+int         		ft_checkwall(float x, float y, int i);
+int         		ft_render_box(int x, int y, int color);
+int         		ft_render_map(void);
+int         		ft_render_player(void);
+int         		deal_key(int key);
+void        		ft_castAllRays(void);
+int         		ft_update(void);
+void        		my_pixel_put(void *img, int x, int y, int color);
+int					key_release(int key);
+t_cast				vertical_intersections(t_ray ray);
+t_cast	    		horizontal_intersections(t_ray ray);
+int					key_press(int key);
+int		   			has_wall(int x, int y);
+float       		normalize_angle(float angle);
+float	   			dist(float x1, float y1, float x2, float y2);
+int					ft_perror(const char *s);
+void        		generate3DProjection();
+void				create_strip_height(float tab[], int color);
+void				create_strip_wall(float tab[], int offset_x, int n_ray);
+int					is_player(char c);
+void				get_position_player(char c, int pos_x, int pos_y);
+int					is_all_elem(void);
+void				reset_elem_conf(void);
+void				import_data(void);
 long	double		ft_atoi_parse(char *str, int *len);
-int				is_player(char c);
-void			get_position_player(char c, int pos_x, int pos_y);
-int				is_all_elem(void);
-void			reset_elem_conf(void);
-void			import_map(char *line);
-void			fill_map(void);
-void			resolution(char **ptr);
-void			color_flo_cei(char *line);
-void			get_path_texture(char *line);
-int				is_path_texture(char *line);
-void			get_texture_sprite(void);
-void			get_texture(void);
-int			is_valid_ext(char *file, char *ext);
-void		check_map(void);
-void		get_args(int argc, char *argv[]);
-void			create_strip_sprite(float tab[], int num_sp);
-void			render3d(void);
-void			draw_rays(void);
-
+int					is_player(char c);
+void				get_position_player(char c, int pos_x, int pos_y);
+int					is_all_elem(void);
+void				reset_elem_conf(void);
+void				import_map(char *line);
+void				fill_map(void);
+void				resolution(char **ptr);
+void				color_flo_cei(char *line);
+void				get_path_texture(char *line);
+int					is_path_texture(char *line);
+void				get_texture_sprite(void);
+void				get_texture(void);
+int					is_valid_ext(char *file, char *ext);
+void				check_map(void);
+void				get_args(int argc, char *argv[]);
+void				create_strip_sprite(float tab[], int num_sp);
+void				render3d(void);
+void				draw_rays(void);
+int					finalize(void *s);
 
 
 

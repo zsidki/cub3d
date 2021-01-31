@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 09:35:53 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/21 17:03:37 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/01/31 17:04:01 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			create_strip_height(float tab[], int color)
 
 	j = -1;
 	while (++j < tab[2])
-	my_pixel_put(g_img_3d, tab[0], tab[1] + j, color);
+		my_pixel_put(g_img_3d, tab[0], tab[1] + j, color);
 }
 
 void			create_strip_wall(float tab[], int offset_x, int n_ray)
