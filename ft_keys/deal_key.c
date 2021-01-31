@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:35:12 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/22 12:38:35 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/01/31 15:05:53 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,13 @@ int		deal_key(int key)
 		if (key == -5)
 		{
 			player.walkDirection = -1;
-			x = (player.x - 2 * WALKSTEP)  / g_tile;
-			y = (player.y / g_tile);
+			y = (player.y - 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
+			x = (player.x + 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
 			if (g_map.map[y][x] != '1')
-				player.x -= WALKSTEP;
+			{
+				player.y -= WALKSTEP * cos(player.rotationAngle);
+				player.x += WALKSTEP * sin(player.rotationAngle);
+			}
 		}//a
 		if (key == 1)
 		{
@@ -88,10 +91,13 @@ int		deal_key(int key)
 		if (key == 2)
 		{
 			player.walkDirection = +1;
-			x = (player.x + 2 * WALKSTEP) / g_tile;
-			y = (player.y / g_tile);
+			y = (player.y + 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
+			x = (player.x - 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
 			if (g_map.map[y][x] != '1')
-				player.x += WALKSTEP;
+			{
+				player.y += WALKSTEP * cos(player.rotationAngle);
+				player.x -= WALKSTEP * sin(player.rotationAngle);
+			}
 		}//d
 		if (key == 13)
 		{
