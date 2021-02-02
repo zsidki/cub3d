@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 20:11:44 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/31 17:04:34 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/02/02 11:10:04 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_update(void)
 			deal_key(g_keys[i]);
 		i++;
 	}
-	ft_castAllRays();
+	ft_castallrays();
 	render3d();
 	return (0);
 }

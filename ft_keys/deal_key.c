@@ -6,14 +6,13 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:35:12 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/31 17:13:23 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/02/02 11:30:52 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-static	void	reset_key(void) //close windows from red x
+static	void	reset_key(void)
 {
 	int i;
 
@@ -22,7 +21,7 @@ static	void	reset_key(void) //close windows from red x
 		g_keys[i++] = 0;
 }
 
-int				key_release(int key) // tableau [0,0,0,0,0,0,0] keep keys numbers in orders
+int				key_release(int key)
 {
 	if (key == 260 || key == 259)
 		reset_key();
@@ -60,60 +59,69 @@ int				key_press(int key)
 	return (key);
 }
 
-int		deal_key(int key)
+int				deal_key(int key)
 {
-		int x;
-		int y;
-		if (key == 53)
-			exit(0);
-		if (key == -5)
-		{
-			player.walkDirection = -1;
-			y = (player.y - 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
-			x = (player.x + 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
-			if (g_map.map[y][x] != '1')
-			{
-				player.y -= WALKSTEP * cos(player.rotationAngle);
-				player.x += WALKSTEP * sin(player.rotationAngle);
-			}
-		}//a
-		if (key == 1)
-		{
-			player.walkDirection = -1;
-			y = (player.y - 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
-			x = (player.x - 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
-			if (g_map.map[y][x] != '1')
-			{
-				player.y -= WALKSTEP * sin(player.rotationAngle);
-				player.x -= WALKSTEP * cos(player.rotationAngle); 
-			}
-		}//s
-		if (key == 2)
-		{
-			player.walkDirection = +1;
-			y = (player.y + 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
-			x = (player.x - 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
-			if (g_map.map[y][x] != '1')
-			{
-				player.y += WALKSTEP * cos(player.rotationAngle);
-				player.x -= WALKSTEP * sin(player.rotationAngle);
-			}
-		}//d
-		if (key == 13)
-		{
-			player.walkDirection = +1;
-			y = (player.y + 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
-			x = (player.x + 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
-			if (g_map.map[y][x] != '1')
-			{
-				player.y += WALKSTEP * sin(player.rotationAngle);
-				player.x += WALKSTEP * cos(player.rotationAngle);
-			}
-		}//w
-		if (key == 123)
-			player.rotationAngle -= 5 * M_PI / 180; //arrow lift
-		if (key == 124)
-		player.rotationAngle += 5 * M_PI / 180; //arrow right
+	int x;
+	int y;
 
+	if (key == 53)
+		exit(0);
+	if (key == -5)
+	{
+		player.walkDirection = -1;
+		y = (player.y - 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
+		x = (player.x + 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
+		if (g_map.map[y][x] != '1')
+		{
+			player.y -= WALKSTEP * cos(player.rotationAngle);
+			player.x += WALKSTEP * sin(player.rotationAngle);
+		}
+	}
+	if (key == 1)
+	{
+		player.walkDirection = -1;
+		y = (player.y - 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
+		x = (player.x - 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
+		if (g_map.map[y][x] != '1')
+		{
+			player.y -= WALKSTEP * sin(player.rotationAngle);
+			player.x -= WALKSTEP * cos(player.rotationAngle);
+		}
+	}
+	dealtow(key);
+	return (0);
+}
+
+int				dealtow(int key)
+{
+	int x;
+	int y;
+
+	if (key == 123)
+		player.rotationAngle -= 5 * M_PI / 180;
+	if (key == 124)
+		player.rotationAngle += 5 * M_PI / 180;
+	if (key == 2)
+	{
+		player.walkDirection = +1;
+		y = (player.y + 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
+		x = (player.x - 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
+		if (g_map.map[y][x] != '1')
+		{
+			player.y += WALKSTEP * cos(player.rotationAngle);
+			player.x -= WALKSTEP * sin(player.rotationAngle);
+		}
+	}
+	if (key == 13)
+	{
+		player.walkDirection = +1;
+		y = (player.y + 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
+		x = (player.x + 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
+		if (g_map.map[y][x] != '1')
+		{
+			player.y += WALKSTEP * sin(player.rotationAngle);
+			player.x += WALKSTEP * cos(player.rotationAngle);
+		}
+	}
 	return (0);
 }

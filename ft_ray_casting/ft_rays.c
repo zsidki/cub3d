@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 14:16:47 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/22 17:48:57 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/02/02 11:11:45 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			draw_rays(void)
 	}
 }
 
-static	t_ray		direction_ray(float angle, int n_ray)
+static	t_ray	direction_ray(float angle, int n_ray)
 {
 	t_ray		ray;
 
@@ -71,7 +71,7 @@ static	void	cast_ray(t_ray ray, int ray_count)
 		rays[ray_count].was_hit_vertical = 0;
 }
 
-void		ft_castAllRays(void)
+void			ft_castallrays(void)
 {
 	int i;
 

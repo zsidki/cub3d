@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 13:28:09 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/12 17:51:01 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/02/02 11:06:55 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,20 @@ int		ft_render_player(void)
 {
 	int i;
 	int j;
-	int color;
+	int x1;
+	int y1;
 
 	i = player.x;
 	j = player.y;
-
 	while (i <= PLAYERR + player.x)
 	{
 		j = player.y;
 		while (j <= PLAYERR + player.y)
 		{
-			int x1;
-			int y1;
-
-			color = 0xFF0000;
-			my_pixel_put(g_img, i, j, color);
-
-			int line;
-			line = 0;
-			while (line--)
-			{
-				x1 = (player.x + PLAYERR) + line * cos(player.rotationAngle);
-				y1 = (player.y + PLAYERR) + line * sin(player.rotationAngle);
-				my_pixel_put(g_img, x1, y1, color);
-			}
+			my_pixel_put(g_img, i, j, 0xFF0000);
+			x1 = (player.x + PLAYERR) * cos(player.rotationAngle);
+			y1 = (player.y + PLAYERR) * sin(player.rotationAngle);
+			my_pixel_put(g_img, x1, y1, 0xFF0000);
 			j++;
 		}
 		i++;

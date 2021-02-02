@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 11:27:04 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/31 16:58:34 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/02/02 11:52:03 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,8 @@ int         		ft_render_box(int x, int y, int color);
 int         		ft_render_map(void);
 int         		ft_render_player(void);
 int         		deal_key(int key);
-void        		ft_castAllRays(void);
+int					dealtow(int key);
+void        		ft_castallrays(void);
 int         		ft_update(void);
 void        		my_pixel_put(void *img, int x, int y, int color);
 int					key_release(int key);
@@ -241,9 +242,6 @@ void				create_strip_sprite(float tab[], int num_sp);
 void				render3d(void);
 void				draw_rays(void);
 int					finalize(void *s);
-
-
-
-
+int					mainmain(void);
 
 #endif
