@@ -6,33 +6,30 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 11:27:04 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/02 11:52:03 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/02/02 12:19:54 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  CUB3D
-// # define g_cub.w 670
-// # define g_cub.h 480
+# ifndef CUB3D
 # define PLAYERR 2
 # define WALKSTEP 3
 # define FOV_ANGLE 60 * (M_PI / 180)
 
-#include "mlx.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <limits.h>
-#include <fcntl.h>
-#include "libft.h"
-#include "get_next_line.h"
+# include "mlx.h"
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <math.h>
+# include <limits.h>
+# include <fcntl.h>
+# include "libft.h"
+# include "get_next_line.h"
 
-
-void    *g_win_ptr;
-void    *g_img;
+void	*g_win_ptr;
+void	*g_img;
 void	*param;
-int     g_num_rays;
-int     g_keys[7];
+int		g_num_rays;
+int		g_keys[7];
 void	*g_img_3d;
 int		g_newline;
 char	*g_config;
@@ -47,16 +44,16 @@ int		g_n_sp;
 
 typedef struct s_player
 {
-    float   x;
-    float   y;
-    int     turnDirection;
-    int     walkDirection;
-    float   moveSpeed;
-    float   rotationAngle;
-    float   rotationSpeed;
-    float   moveStep;
-    float   oldx;
-    float   oldy;
+	float	x;
+	float	y;
+	int		turnDirection;
+	int		walkDirection;
+	float	moveSpeed;
+	float	rotationAngle;
+	float	rotationSpeed;
+	float	moveStep;
+	float	oldx;
+	float	oldy;
 	float	fov;
 
 }           t_player;
@@ -75,15 +72,15 @@ typedef struct	s_wall_hit
 
 typedef struct  s_rays
 {
-    double		angle;
-    double		dist;
-	int			was_hit_vertical; // hit == 1 is vert and === 0 is heris
+	double		angle;
+	double		dist;
+	int			was_hit_vertical;
 	t_wall_hit	wall_hit;
 	int			is_down;
 	int			is_up;
 	int			is_right;
 	int			is_left;
-    
+
 }           t_rays;
 typedef struct	s_ray
 {
@@ -116,7 +113,7 @@ typedef	struct s_cub
 	void	*win;
 	int		h;
 	int		w;
-	
+
 }			t_cub;
 
 typedef struct	s_map
@@ -148,8 +145,6 @@ typedef struct	s_texture
 	int			h;
 	int			size_line;
 }				t_texture;
-
-
 
 typedef	struct	s_sp_cast
 {
@@ -184,7 +179,7 @@ typedef	struct	s_img_bmp
 }				t_img_bmp;
 
 t_player    	player;
-t_rays      	*rays;
+t_rays			*rays;
 t_cub			g_cub;
 t_map			g_map;
 t_is_set_el		g_is_set;
@@ -196,25 +191,24 @@ t_texture		g_text_ea;
 t_sprite		*g_sprites;
 t_img_bmp		g_pl_img;
 
-
-int         		ft_checkwall(float x, float y, int i);
-int         		ft_render_box(int x, int y, int color);
-int         		ft_render_map(void);
-int         		ft_render_player(void);
-int         		deal_key(int key);
+int					ft_checkwall(float x, float y, int i);
+int					ft_render_box(int x, int y, int color);
+int					ft_render_map(void);
+int					ft_render_player(void);
+int					deal_key(int key);
 int					dealtow(int key);
-void        		ft_castallrays(void);
-int         		ft_update(void);
-void        		my_pixel_put(void *img, int x, int y, int color);
+void				ft_castallrays(void);
+int					ft_update(void);
+void				my_pixel_put(void *img, int x, int y, int color);
 int					key_release(int key);
 t_cast				vertical_intersections(t_ray ray);
-t_cast	    		horizontal_intersections(t_ray ray);
+t_cast				horizontal_intersections(t_ray ray);
 int					key_press(int key);
-int		   			has_wall(int x, int y);
-float       		normalize_angle(float angle);
-float	   			dist(float x1, float y1, float x2, float y2);
+int					has_wall(int x, int y);
+float				normalize_angle(float angle);
+float				dist(float x1, float y1, float x2, float y2);
 int					ft_perror(const char *s);
-void        		generate3DProjection();
+void				generate3DProjection();
 void				create_strip_height(float tab[], int color);
 void				create_strip_wall(float tab[], int offset_x, int n_ray);
 int					is_player(char c);
