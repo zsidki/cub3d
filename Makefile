@@ -12,7 +12,7 @@
 
 .PHONY: all fclean clean re
 NAME = cub3D
-CC = gcc -g -fsanitize=address
+CC = gcc -g #-fsanitize=address
 FLAGS = -Wall -Werror -Wextra -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 
 SRC = 		main.c \
@@ -26,8 +26,7 @@ SRC = 		main.c \
 			ft_ray_casting/ft_rays.c \
 			my_pixel_put.c \
 			ft_renders/render_3d_utils.c \
-			ft_renders/render_3d.c \
-
+			ft_renders/render_3d.c sprites.c screenbmb.c\
 
 all: $(NAME)
 $(NAME): 
@@ -45,4 +44,3 @@ push:
 	@git add .
 	@git commit -m "$(m)"
 	@git push origin main
-	

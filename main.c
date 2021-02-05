@@ -17,6 +17,10 @@ void		ft_putchar(char c)
 	write(1, &c, 1);
 }
 
+int	tets(void *p) {
+	p = NULL;
+	exit(0);
+}
 int			main(int argc, char *argv[])
 {
 	int i;
@@ -35,6 +39,7 @@ int			main(int argc, char *argv[])
 	ft_update();
 	mlx_hook(g_win_ptr, 2, 1L << 0, key_press, NULL);
 	mlx_hook(g_win_ptr, 3, 1L << 1, key_release, NULL);
+	mlx_hook(g_win_ptr, 17, 0L, finalize, NULL);
 	mlx_loop_hook(g_cub.ptr, ft_update, NULL);
 	mlx_loop(g_cub.ptr);
 	return (0);
@@ -43,7 +48,9 @@ int			main(int argc, char *argv[])
 int			mainmain(void)
 {
 	g_num_rays = g_cub.w;
+	g_index_sp = 0; //s
 	rays = (t_rays *)malloc(sizeof(t_rays) * g_num_rays);
+	g_sprites = (t_sprite *)(malloc((1 * g_n_sp) * sizeof(t_sprite))); //s
 	player.turnDirection = 0;
 	player.walkDirection = 0;
 	player.rotationAngle = (-M_PI / 2);

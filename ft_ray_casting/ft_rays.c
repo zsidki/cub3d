@@ -12,6 +12,27 @@
 
 #include "cub3d.h"
 
+static	void	get_sprites(t_cast vert, t_cast horz, float dist_wall)
+{
+	int			i;
+
+	i = 0;
+
+	while (i < (vert.i_sp + 1))
+	{
+		if (vert.sprite[i].dist < dist_wall)
+			get_sprite_data(vert.sprite[i]);
+		i++;
+	}
+	i = 0;
+	while (i < (horz.i_sp + 1))
+	{
+		if (horz.sprite[i].dist < dist_wall)
+			get_sprite_data(horz.sprite[i]);
+		i++;
+	}
+}
+
 void			draw_rays(void)
 {
 	int line;
@@ -65,10 +86,18 @@ static	void	cast_ray(t_ray ray, int ray_count)
 	rays[ray_count].wall_hit.y = ((horz.found_horz_wall &&
 			(horz.dist < vert.dist))) ? horz.wall_hit_y : vert.wall_hit_y;
 	rays[ray_count].dist = (horz.dist < vert.dist) ? horz.dist : vert.dist;
+
+	if (vert.i_sp >= 0 || horz.i_sp >= 0)
+		get_sprites(vert, horz, rays[ray_count].dist);
 	if (vert.dist < horz.dist)
 		rays[ray_count].was_hit_vertical = 1;
 	else
 		rays[ray_count].was_hit_vertical = 0;
+	if (vert.sprite && horz.sprite)
+	{
+		free(vert.sprite);
+		free(horz.sprite);
+	}
 }
 
 void			ft_castallrays(void)
@@ -76,12 +105,12 @@ void			ft_castallrays(void)
 	int i;
 
 	i = 1;
-	rays[0].angle = normalize_angle(player.rotationAngle - (FOV_ANGLE / 2));
+	rays[0].angle = normalize_angle(player.rotationAngle - ((FOV_ANGLE) / 2));
 	cast_ray(direction_ray(rays[0].angle, 0), 0);
 	while (i < g_num_rays)
 	{
 		rays[i].angle = normalize_angle(rays[i - 1].angle +
-		(FOV_ANGLE / g_num_rays));
+		((FOV_ANGLE) / g_num_rays));
 		cast_ray(direction_ray(rays[i].angle, i), i);
 		i++;
 	}

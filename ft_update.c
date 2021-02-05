@@ -23,6 +23,7 @@ int		ft_update(void)
 			deal_key(g_keys[i]);
 		i++;
 	}
+	clear_sprites();
 	ft_castallrays();
 	render3d();
 	return (0);

@@ -15,11 +15,11 @@
 static	void		check_error(char *str)
 {
 	if ((*str < '0' || *str > '9') && *str != '\0' && *str != ' ')
-		ft_perror("Invalid character ; !!\n");
+		ft_perror("Invalid character7 ; !!\n");
 	while (*str)
 	{
 		if (*str != '\0' && *str != ' ')
-			ft_perror("Invalid character ; !!\n");
+			ft_perror("Invalid character9 ; !!\n");
 		str++;
 	}
 }
@@ -46,7 +46,8 @@ long	double		ft_atoi_parse(char *str, int *len)
 		str++;
 	}
 	if (!space)
-		ft_perror("Invalid character ; !!\n");
+		ft_perror("Invalid character8 ; !!\n");
+
 	check_error(str);
 	if (*len)
 		return (30000);

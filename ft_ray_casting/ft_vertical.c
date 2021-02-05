@@ -30,6 +30,18 @@ static t_cast	calculate_steps(t_cast cast, t_ray ray)
 	return (cast);
 }
 
+static	void	add_tmp_sprite(t_cast *cast, double hit_x, double hit_y)
+{
+	cast->i_sp++;
+	cast->sprite[cast->i_sp].hit_vert = 1;
+	cast->sprite[cast->i_sp].index_x = hit_x / g_tile;
+	cast->sprite[cast->i_sp].index_y = hit_y / g_tile;
+	cast->sprite[cast->i_sp].hit_x =
+		(cast->sprite[cast->i_sp].index_x * g_tile) + (g_tile / 2);
+	cast->sprite[cast->i_sp].hit_y =
+		(cast->sprite[cast->i_sp].index_y * g_tile) + (g_tile / 2);
+}
+
 static t_cast	increment_steps(t_cast cast)
 {
 	while (cast.next_touch_x >= 0 && cast.next_touch_x <= g_tile * g_map.w
@@ -42,6 +54,9 @@ static t_cast	increment_steps(t_cast cast)
 			cast.wall_hit_y = cast.next_touch_y;
 			break ;
 		}
+		if (has_wall(cast.next_touch_x - cast.minus_x, cast.next_touch_y) == 2)
+			add_tmp_sprite(&cast, cast.next_touch_x - cast.minus_x,
+				cast.next_touch_y);
 		cast.next_touch_x += cast.xstep;
 		cast.next_touch_y -= cast.ystep;
 	}
@@ -58,6 +73,9 @@ t_cast			vertical_intersections(t_ray ray)
 	t_cast	cast;
 	int		i;
 
+	i = g_n_sp * 2;
+	cast.sprite = (t_sp_cast *)malloc(sizeof(t_sp_cast) * i);
+	cast.i_sp = -1;
 	cast.found_vert_wall = 0;
 	i = 0;
 	cast = calculate_steps(cast, ray);
@@ -65,5 +83,13 @@ t_cast			vertical_intersections(t_ray ray)
 	cast.dist = (cast.found_vert_wall)
 		? dist(player.x, player.y, cast.wall_hit_x, cast.wall_hit_y)
 		: WINT_MAX;
+	while (i < cast.i_sp + 1)
+	{
+		cast.sprite[i].dist = (cast.sprite[i].hit_vert)
+			? dist(player.x, player.y, cast.sprite[i].hit_x,
+					cast.sprite[i].hit_y)
+			: WINT_MAX;
+		i++;
+	}
 	return (cast);
 }

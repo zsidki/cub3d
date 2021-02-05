@@ -15,8 +15,8 @@
 int		finalize(void *s)
 {
 	s = NULL;
-	mlx_destroy_image(g_cub.ptr, g_pl_img.img);
-	mlx_destroy_window(g_cub.ptr, g_cub.win);
+	// mlx_destroy_image(g_cub.ptr, g_img_3d);
+	// mlx_destroy_window(g_cub.ptr, g_cub.win);
 	free(rays);
 	free(g_sprites);
 	free(g_map.map);

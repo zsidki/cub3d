@@ -82,6 +82,7 @@ typedef struct  s_rays
 	int			is_left;
 
 }           t_rays;
+
 typedef struct	s_ray
 {
 	double		angle;
@@ -90,6 +91,17 @@ typedef struct	s_ray
 	int			is_right;
 	int			is_left;
 }				t_ray;
+
+typedef	struct	s_sp_cast
+{
+	int			hit_horz;
+	int			hit_vert;
+	double		hit_x;
+	double		hit_y;
+	double		dist;
+	int			index_x;
+	int			index_y;
+}				t_sp_cast;
 
 typedef struct	s_cast
 {
@@ -106,6 +118,8 @@ typedef struct	s_cast
 	int			found_vert_wall;
 	int			minus_y;
 	int			minus_x;
+	t_sp_cast	*sprite;
+	int			i_sp;
 }				t_cast;
 typedef	struct s_cub
 {
@@ -146,16 +160,19 @@ typedef struct	s_texture
 	int			size_line;
 }				t_texture;
 
-typedef	struct	s_sp_cast
+
+typedef struct	s_bitmap
 {
-	int			hit_horz;
-	int			hit_vert;
-	double		hit_x;
-	double		hit_y;
-	double		dist;
-	int			index_x;
-	int			index_y;
-}				t_sp_cast;
+	int32_t		width;
+	int32_t		height;
+	uint16_t	bpp;
+	int			width_in_bytes;
+	uint32_t	imagesize;
+	uint32_t	bisize;
+	uint32_t	bfoffbits;
+	uint32_t	filesize;
+	uint16_t	biplanes;
+}				t_bitmap;
 typedef struct	s_sprite
 {
 	double		x;
@@ -237,5 +254,10 @@ void				render3d(void);
 void				draw_rays(void);
 int					finalize(void *s);
 int					mainmain(void);
+void				get_sprite_data(t_sp_cast tmp_sp);
+void				sort_sprites(void);
+void				clear_sprites(void);
+void				ft_screenshot(void);
+
 
 #endif
