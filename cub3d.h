@@ -259,5 +259,4 @@ void				sort_sprites(void);
 void				clear_sprites(void);
 void				ft_screenshot(void);
 
-
 #endif
