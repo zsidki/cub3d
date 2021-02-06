@@ -15,8 +15,6 @@
 int		finalize(void *s)
 {
 	s = NULL;
-	// mlx_destroy_image(g_cub.ptr, g_img_3d);
-	// mlx_destroy_window(g_cub.ptr, g_cub.win);
 	free(rays);
 	free(g_sprites);
 	free(g_map.map);
@@ -36,7 +34,7 @@ float	normalize_angle(float angle)
 {
 	float new_angle;
 
-	new_angle = fmod(angle, (2 * M_PI)); // float mod
+	new_angle = fmod(angle, (2 * M_PI));
 	if (new_angle < 0)
 		new_angle += (2 * M_PI);
 	return (new_angle);
