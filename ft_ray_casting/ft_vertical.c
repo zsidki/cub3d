@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 19:13:36 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/22 12:38:35 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:42:59 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:46:13 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static t_cast	calculate_steps(t_cast cast, t_ray ray)
 {
-	cast.xinterept = floor(player.x / g_tile) * g_tile;
+	cast.xinterept = floor(g_player.x / g_tile) * g_tile;
 	cast.xinterept += (ray.is_right ? g_tile : 0);
-	cast.yinterept = player.y + ((-cast.xinterept + player.x)
+	cast.yinterept = g_player.y + ((-cast.xinterept + g_player.x)
 		* tan(-ray.angle));
 	cast.xstep = g_tile;
 	cast.xstep *= ray.is_left ? -1 : 1;
@@ -62,8 +62,8 @@ static t_cast	increment_steps(t_cast cast)
 	}
 	if (!cast.found_vert_wall)
 	{
-		cast.wall_hit_x = player.x;
-		cast.wall_hit_y = player.y;
+		cast.wall_hit_x = g_player.x;
+		cast.wall_hit_y = g_player.y;
 	}
 	return (cast);
 }
@@ -81,12 +81,12 @@ t_cast			vertical_intersections(t_ray ray)
 	cast = calculate_steps(cast, ray);
 	cast = increment_steps(cast);
 	cast.dist = (cast.found_vert_wall)
-		? dist(player.x, player.y, cast.wall_hit_x, cast.wall_hit_y)
+		? dist(g_player.x, g_player.y, cast.wall_hit_x, cast.wall_hit_y)
 		: WINT_MAX;
 	while (i < cast.i_sp + 1)
 	{
 		cast.sprite[i].dist = (cast.sprite[i].hit_vert)
-			? dist(player.x, player.y, cast.sprite[i].hit_x,
+			? dist(g_player.x, g_player.y, cast.sprite[i].hit_x,
 					cast.sprite[i].hit_y)
 			: WINT_MAX;
 		i++;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 11:31:28 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/22 11:32:38 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:39:02 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:06:43 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ void			resolution(char **ptr)
 		i++;
 	if (i != 3 || ft_strlen(ptr[0]) != 1)
 		ft_perror("Invalid Resolution ; Other Param\n");
-	
 	g_cub.w = ft_atoi_parse(ptr[1], &len_width);
 	g_cub.h = ft_atoi_parse(ptr[2], &len_width);
 	if (g_cub.w <= 0 || g_cub.h <= 0)
 		ft_perror("Invalid Resolution !!\n");
 	g_cub.w = (g_cub.w > 2880) ? 2880 : g_cub.w;
 	g_cub.h = (g_cub.h > 1620) ? 1620 : g_cub.h;
-
 }
 
 static	void	check_error_color(char *line, char **ptr)

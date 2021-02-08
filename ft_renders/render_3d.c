@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/06 14:50:33 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/06 14:50:33 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:43:32 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 17:05:30 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ float	g_dst_proj_pl;
 
 static	int		get_offset_x(int ray_n)
 {
-	if (rays[ray_n].was_hit_vertical)
-		return ((int)rays[ray_n].wall_hit.y % (int)g_tile);
-	return ((int)rays[ray_n].wall_hit.x % (int)g_tile);
+	if (g_rays[ray_n].was_hit_vertical)
+		return ((int)g_rays[ray_n].wall_hit.y % (int)g_tile);
+	return ((int)g_rays[ray_n].wall_hit.x % (int)g_tile);
 }
 
 static	void	render_sprites(void)
@@ -34,7 +34,7 @@ static	void	render_sprites(void)
 	{
 		dst_prj_plane = (g_cub.w / 2) / tan((FOV_ANGLE) / 2);
 		corr_sp_dst = g_sprites[i].dist *
-			cos(g_sprites[i].angle - player.rotationAngle);
+			cos(g_sprites[i].angle - g_player.rotationangle);
 		
 		sp_width = (g_tile / corr_sp_dst) * dst_prj_plane;
 		// printf("%d %f\n", g_text_sp.w, dst_prj_plane);
@@ -58,7 +58,7 @@ void			render3d(void)
 	i = -1;
 	while (++i < g_num_rays)
 	{
-		corr_wal_dst = rays[i].dist * cos(rays[i].angle - player.rotationAngle);
+		corr_wal_dst = g_rays[i].dist * cos(g_rays[i].angle - g_player.rotationangle);
 		strip_h = (g_tile / corr_wal_dst) * g_dst_proj_pl;
 		create_strip_wall((float[]){i , (g_cub.h / 2) -
 				(strip_h / 2), strip_h}, get_offset_x(i), i);

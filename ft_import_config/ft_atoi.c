@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zsidki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 11:17:05 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/02 11:12:48 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:36:53 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 15:37:00 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static	void		check_error(char *str)
 	}
 }
 
-long	double		ft_atoi_parse(char *str, int *len)
+long double			ft_atoi_parse(char *str, int *len)
 {
 	long	double	ch;
 	int				sign;
@@ -47,7 +47,6 @@ long	double		ft_atoi_parse(char *str, int *len)
 	}
 	if (!space)
 		ft_perror("Invalid character8 ; !!\n");
-
 	check_error(str);
 	if (*len)
 		return (30000);

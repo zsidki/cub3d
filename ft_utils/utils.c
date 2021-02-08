@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 18:59:32 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/31 17:08:55 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:44:58 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:51:28 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-	
+
 int		finalize(void *s)
 {
 	s = NULL;
-	free(rays);
+	free(g_rays);
 	free(g_sprites);
 	free(g_map.map);
 	exit(EXIT_SUCCESS);

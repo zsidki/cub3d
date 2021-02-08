@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 11:40:21 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/22 11:58:27 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:44:37 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:34:42 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int			is_valid_ext(char *file, char *ext)
 			return (0);
 	return (1);
 }
-
 
 void		get_args(int argc, char *argv[])
 {

@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 11:27:04 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/02 12:19:54 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:46:15 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 17:08:17 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUB3D
+#ifndef CUB3D_H
+# define CUB3D_H
 # define PLAYERR 2
 # define WALKSTEP 3
 # define FOV_ANGLE 60 * (M_PI / 180)
@@ -27,7 +28,6 @@
 
 void	*g_win_ptr;
 void	*g_img;
-void	*param;
 int		g_num_rays;
 int		g_keys[7];
 void	*g_img_3d;
@@ -42,21 +42,20 @@ int		g_screenshot;
 int		g_index_sp;
 int		g_n_sp;
 
-typedef struct s_player
+typedef struct	s_player
 {
 	float	x;
 	float	y;
-	int		turnDirection;
-	int		walkDirection;
-	float	moveSpeed;
-	float	rotationAngle;
-	float	rotationSpeed;
-	float	moveStep;
+	int		turndirection;
+	int		walkdirection;
+	float	movespeed;
+	float	rotationangle;
+	float	rotationspeed;
 	float	oldx;
 	float	oldy;
 	float	fov;
 
-}           t_player;
+}				t_player;
 
 typedef struct	s_vector
 {
@@ -70,7 +69,7 @@ typedef struct	s_wall_hit
 	double		y;
 }				t_wall_hit;
 
-typedef struct  s_rays
+typedef struct	s_rays
 {
 	double		angle;
 	double		dist;
@@ -81,7 +80,7 @@ typedef struct  s_rays
 	int			is_right;
 	int			is_left;
 
-}           t_rays;
+}				t_rays;
 
 typedef struct	s_ray
 {
@@ -121,14 +120,14 @@ typedef struct	s_cast
 	t_sp_cast	*sprite;
 	int			i_sp;
 }				t_cast;
-typedef	struct s_cub
-{
-	void	*ptr;
-	void	*win;
-	int		h;
-	int		w;
 
-}			t_cub;
+typedef	struct	s_cub
+{
+	void		*ptr;
+	void		*win;
+	int			h;
+	int			w;
+}				t_cub;
 
 typedef struct	s_map
 {
@@ -159,7 +158,6 @@ typedef struct	s_texture
 	int			h;
 	int			size_line;
 }				t_texture;
-
 
 typedef struct	s_bitmap
 {
@@ -195,8 +193,8 @@ typedef	struct	s_img_bmp
 	int			endian;
 }				t_img_bmp;
 
-t_player    	player;
-t_rays			*rays;
+t_player		g_player;
+t_rays			*g_rays;
 t_cub			g_cub;
 t_map			g_map;
 t_is_set_el		g_is_set;
@@ -208,55 +206,55 @@ t_texture		g_text_ea;
 t_sprite		*g_sprites;
 t_img_bmp		g_pl_img;
 
-int					ft_checkwall(float x, float y, int i);
-int					ft_render_box(int x, int y, int color);
-int					ft_render_map(void);
-int					ft_render_player(void);
-int					deal_key(int key);
-int					dealtow(int key);
-void				ft_castallrays(void);
-int					ft_update(void);
-void				my_pixel_put(void *img, int x, int y, int color);
-int					key_release(int key);
-t_cast				vertical_intersections(t_ray ray);
-t_cast				horizontal_intersections(t_ray ray);
-int					key_press(int key);
-int					has_wall(int x, int y);
-float				normalize_angle(float angle);
-float				dist(float x1, float y1, float x2, float y2);
-int					ft_perror(const char *s);
-void				generate3DProjection();
-void				create_strip_height(float tab[], int color);
-void				create_strip_wall(float tab[], int offset_x, int n_ray);
-int					is_player(char c);
-void				get_position_player(char c, int pos_x, int pos_y);
-int					is_all_elem(void);
-void				reset_elem_conf(void);
-void				import_data(void);
-long	double		ft_atoi_parse(char *str, int *len);
-int					is_player(char c);
-void				get_position_player(char c, int pos_x, int pos_y);
-int					is_all_elem(void);
-void				reset_elem_conf(void);
-void				import_map(char *line);
-void				fill_map(void);
-void				resolution(char **ptr);
-void				color_flo_cei(char *line);
-void				get_path_texture(char *line);
-int					is_path_texture(char *line);
-void				get_texture_sprite(void);
-void				get_texture(void);
-int					is_valid_ext(char *file, char *ext);
-void				check_map(void);
-void				get_args(int argc, char *argv[]);
-void				create_strip_sprite(float tab[], int num_sp);
-void				render3d(void);
-void				draw_rays(void);
-int					finalize(void *s);
-int					mainmain(void);
-void				get_sprite_data(t_sp_cast tmp_sp);
-void				sort_sprites(void);
-void				clear_sprites(void);
-void				ft_screenshot(void);
+int				ft_checkwall(float x, float y, int i);
+int				ft_render_box(int x, int y, int color);
+int				ft_render_map(void);
+int				ft_render_player(void);
+int				deal_key(int key);
+void			dealtow(int key);
+void			ft_castallrays(void);
+int				ft_update(void);
+void			my_pixel_put(void *img, int x, int y, int color);
+int				key_release(int key);
+t_cast			vertical_intersections(t_ray ray);
+t_cast			horizontal_intersections(t_ray ray);
+int				key_press(int key);
+int				has_wall(int x, int y);
+float			normalize_angle(float angle);
+float			dist(float x1, float y1, float x2, float y2);
+int				ft_perror(const char *s);
+void			create_strip_height(float tab[], int color);
+void			create_strip_wall(float tab[], int offset_x, int n_ray);
+int				is_player(char c);
+void			get_position_player(char c, int pos_x, int pos_y);
+int				is_all_elem(void);
+void			reset_elem_conf(void);
+void			import_data(void);
+long	double	ft_atoi_parse(char *str, int *len);
+int				is_player(char c);
+void			get_position_player(char c, int pos_x, int pos_y);
+int				is_all_elem(void);
+void			reset_elem_conf(void);
+void			import_map(char *line);
+void			fill_map(void);
+void			resolution(char **ptr);
+void			color_flo_cei(char *line);
+void			get_path_texture(char *line);
+int				is_path_texture(char *line);
+void			get_texture_sprite(void);
+void			get_texture(void);
+int				is_valid_ext(char *file, char *ext);
+void			check_map(void);
+void			get_args(int argc, char *argv[]);
+void			create_strip_sprite(float tab[], int num_sp);
+void			render3d(void);
+void			draw_rays(void);
+int				finalize(void *s);
+int				mainmain(void);
+void			get_sprite_data(t_sp_cast tmp_sp);
+void			sort_sprites(void);
+void			clear_sprites(void);
+void			ft_screenshot(void);
+int				dealthree(int key);
 
 #endif

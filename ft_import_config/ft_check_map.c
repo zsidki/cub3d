@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zsidki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 11:22:34 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/22 11:24:12 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:37:16 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 15:37:22 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		check_arr_space(int i, int j)
+int			check_arr_space(int i, int j)
 {
 	if (i > 0 && g_map.map[i - 1][j] != ' ' && g_map.map[i - 1][j] != '1')
 		return (0);
@@ -27,7 +27,7 @@ int		check_arr_space(int i, int j)
 	return (1);
 }
 
-void	check_map(void)
+void		check_map(void)
 {
 	int i;
 	int j;

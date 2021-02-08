@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/31 15:01:38 by zsidki            #+#    #+#             */
-/*   Updated: 2021/01/31 15:34:02 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:35:54 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:54:09 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,20 @@ static	void	get_ray_hit_sp(float s_x, float s_y, int i_sp)
 	t_vector	v_ray1;
 	t_vector	v_sp;
 
-	v_ray1.x = rays[0].wall_hit.x - player.x;
-	v_ray1.y = rays[0].wall_hit.y - player.y;
-	v_sp.x = s_x - player.x;
-	v_sp.y = s_y - player.y;
-	alpha = - atan2(v_ray1.y, v_ray1.x) + atan2(v_sp.y, v_sp.x);
+	v_ray1.x = g_rays[0].wall_hit.x - g_player.x;
+	v_ray1.y = g_rays[0].wall_hit.y - g_player.y;
+	v_sp.x = s_x - g_player.x;
+	v_sp.y = s_y - g_player.y;
+	alpha = -atan2(v_ray1.y, v_ray1.x) + atan2(v_sp.y, v_sp.x);
 	if (alpha > M_PI)
 		alpha -= M_PI * 2;
 	else if (alpha < -M_PI)
 		alpha += M_PI * 2;
-
 	g_sprites[i_sp].num_ray = (g_num_rays / (FOV_ANGLE)) * alpha;
 }
 
 void			get_sprite_data(t_sp_cast tmp_sp)
 {
-
 	if (!in_array_sprites(tmp_sp.index_x, tmp_sp.index_y))
 	{
 		g_sprites[g_index_sp].x = tmp_sp.hit_x;
@@ -57,10 +55,9 @@ void			get_sprite_data(t_sp_cast tmp_sp)
 		g_sprites[g_index_sp].index_x = tmp_sp.index_x;
 		g_sprites[g_index_sp].index_y = tmp_sp.index_y;
 		g_sprites[g_index_sp].dist = tmp_sp.dist;
-
 		get_ray_hit_sp(g_sprites[g_index_sp].x, g_sprites[g_index_sp].y,
 			g_index_sp);
-		g_sprites[g_index_sp].angle = normalize_angle(player.rotationAngle -
+		g_sprites[g_index_sp].angle = normalize_angle(g_player.rotationangle -
 				(FOV_ANGLE) / 2) + (g_sprites[g_index_sp].num_ray *
 				((FOV_ANGLE) / g_num_rays));
 		g_index_sp++;

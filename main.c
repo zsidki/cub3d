@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/03 11:02:29 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/02 11:49:33 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:30:46 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:55:14 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void		ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int	tets(void *p) {
+int			tets(void *p)
+{
 	p = NULL;
 	exit(0);
 }
+
 int			main(int argc, char *argv[])
 {
 	int i;
@@ -48,14 +50,14 @@ int			main(int argc, char *argv[])
 int			mainmain(void)
 {
 	g_num_rays = g_cub.w;
-	g_index_sp = 0; //s
-	rays = (t_rays *)malloc(sizeof(t_rays) * g_num_rays);
-	g_sprites = (t_sprite *)(malloc((1 * g_n_sp) * sizeof(t_sprite))); //s
-	player.turnDirection = 0;
-	player.walkDirection = 0;
-	player.rotationAngle = (-M_PI / 2);
-	player.moveSpeed = 2.1;
-	player.rotationSpeed = 1.5 * (M_PI / 180);
+	g_index_sp = 0;
+	g_rays = (t_rays *)malloc(sizeof(t_rays) * g_num_rays);
+	g_sprites = (t_sprite *)(malloc((1 * g_n_sp) * sizeof(t_sprite)));
+	g_player.turndirection = 0;
+	g_player.walkdirection = 0;
+	g_player.rotationangle = (-M_PI / 2);
+	g_player.movespeed = 2.1;
+	g_player.rotationspeed = 1.5 * (M_PI / 180);
 	g_win_ptr = mlx_new_window(g_cub.ptr, g_cub.w, g_cub.h, "cub3D");
 	g_img_3d = mlx_new_image(g_cub.ptr, g_cub.w, g_cub.h);
 	return (0);

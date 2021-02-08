@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/01 13:35:12 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/02 11:30:52 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:40:12 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:54:09 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,60 +68,45 @@ int				deal_key(int key)
 		exit(0);
 	if (key == -5)
 	{
-		player.walkDirection = -1;
-		y = (player.y - 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
-		x = (player.x + 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
+		g_player.walkdirection = -1;
+		y = (g_player.y - 2 * WALKSTEP * cos(g_player.rotationangle)) / g_tile;
+		x = (g_player.x + 2 * WALKSTEP * sin(g_player.rotationangle)) / g_tile;
 		if (g_map.map[y][x] != '1')
 		{
-			player.y -= WALKSTEP * cos(player.rotationAngle);
-			player.x += WALKSTEP * sin(player.rotationAngle);
+			g_player.y -= WALKSTEP * cos(g_player.rotationangle);
+			g_player.x += WALKSTEP * sin(g_player.rotationangle);
 		}
 	}
-	if (key == 1)
-	{
-		player.walkDirection = -1;
-		y = (player.y - 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
-		x = (player.x - 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
-		if (g_map.map[y][x] != '1')
-		{
-			player.y -= WALKSTEP * sin(player.rotationAngle);
-			player.x -= WALKSTEP * cos(player.rotationAngle);
-		}
-	}
+	dealthree(key);
 	dealtow(key);
 	return (0);
 }
 
-int				dealtow(int key)
+void			dealtow(int key)
 {
 	int x;
 	int y;
 
-	if (key == 123)
-		player.rotationAngle -= 5 * M_PI / 180;
-	if (key == 124)
-		player.rotationAngle += 5 * M_PI / 180;
+	if (key == 1)
+	{
+		g_player.walkdirection = -1;
+		y = (g_player.y - 2 * WALKSTEP * sin(g_player.rotationangle)) / g_tile;
+		x = (g_player.x - 2 * WALKSTEP * cos(g_player.rotationangle)) / g_tile;
+		if (g_map.map[y][x] != '1')
+		{
+			g_player.y -= WALKSTEP * sin(g_player.rotationangle);
+			g_player.x -= WALKSTEP * cos(g_player.rotationangle);
+		}
+	}
 	if (key == 2)
 	{
-		player.walkDirection = +1;
-		y = (player.y + 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
-		x = (player.x - 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
+		g_player.walkdirection = +1;
+		y = (g_player.y + 2 * WALKSTEP * cos(g_player.rotationangle)) / g_tile;
+		x = (g_player.x - 2 * WALKSTEP * sin(g_player.rotationangle)) / g_tile;
 		if (g_map.map[y][x] != '1')
 		{
-			player.y += WALKSTEP * cos(player.rotationAngle);
-			player.x -= WALKSTEP * sin(player.rotationAngle);
+			g_player.y += WALKSTEP * cos(g_player.rotationangle);
+			g_player.x -= WALKSTEP * sin(g_player.rotationangle);
 		}
 	}
-	if (key == 13)
-	{
-		player.walkDirection = +1;
-		y = (player.y + 2 * WALKSTEP * sin(player.rotationAngle)) / g_tile;
-		x = (player.x + 2 * WALKSTEP * cos(player.rotationAngle)) / g_tile;
-		if (g_map.map[y][x] != '1')
-		{
-			player.y += WALKSTEP * sin(player.rotationAngle);
-			player.x += WALKSTEP * cos(player.rotationAngle);
-		}
-	}
-	return (0);
 }

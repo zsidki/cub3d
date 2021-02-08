@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/06 14:50:25 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/06 14:50:25 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:44:12 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:50:22 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void			create_strip_wall(float tab[], int offset_x, int n_ray)
 	j = -1;
 	while (++j < tab[2])
 	{
-		if (rays[n_ray].was_hit_vertical && rays[n_ray].is_left)
+		if (g_rays[n_ray].was_hit_vertical && g_rays[n_ray].is_left)
 			k = 1;
-		else if (rays[n_ray].was_hit_vertical && rays[n_ray].is_right)
+		else if (g_rays[n_ray].was_hit_vertical && g_rays[n_ray].is_right)
 			k = 0;
-		else if (!rays[n_ray].was_hit_vertical && rays[n_ray].is_down)
+		else if (!g_rays[n_ray].was_hit_vertical && g_rays[n_ray].is_down)
 			k = 3;
-		else if (!rays[n_ray].was_hit_vertical && rays[n_ray].is_up)
+		else if (!g_rays[n_ray].was_hit_vertical && g_rays[n_ray].is_up)
 			k = 2;
 		my_pixel_put(g_img_3d, tab[0], tab[1] + j,
 			get_color_text(k, tab[1] + j + h / 2 - g_cub.h / 2, h, offset_x));
@@ -83,7 +83,7 @@ void			create_strip_sprite(float tab[], int num_sp)
 	while (++i < tab[2])
 	{
 		if ((tab[0] + i) < g_num_rays - 1 && (tab[0] + i) >= 0)
-			if (rays[(int)tab[0] + i].dist < g_sprites[num_sp].dist)
+			if (g_rays[(int)tab[0] + i].dist < g_sprites[num_sp].dist)
 				continue ;
 		j = -1;
 		while (++j < tab[3])

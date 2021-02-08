@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/03 14:16:47 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/02 11:11:45 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:42:31 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:54:09 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static	void	get_sprites(t_cast vert, t_cast horz, float dist_wall)
 	int			i;
 
 	i = 0;
-
 	while (i < (vert.i_sp + 1))
 	{
 		if (vert.sprite[i].dist < dist_wall)
@@ -45,11 +44,11 @@ void			draw_rays(void)
 	i = 0;
 	while (i < g_num_rays)
 	{
-		line = rays[i].dist;
+		line = g_rays[i].dist;
 		while (line--)
 		{
-			r1 = (player.x + PLAYERR) + line * cos(rays[i].angle);
-			r2 = (player.y + PLAYERR) + line * sin(rays[i].angle);
+			r1 = (g_player.x + PLAYERR) + line * cos(g_rays[i].angle);
+			r2 = (g_player.y + PLAYERR) + line * sin(g_rays[i].angle);
 			my_pixel_put(g_img, r1, r2, color);
 		}
 		i++;
@@ -65,12 +64,12 @@ static	t_ray	direction_ray(float angle, int n_ray)
 	ray.is_up = !ray.is_down;
 	ray.is_right = ray.angle >= (M_PI * 3 / 2) || ray.angle <= (M_PI / 2);
 	ray.is_left = !ray.is_right;
-	rays[n_ray].angle = angle;
-	rays[n_ray].is_down = ray.angle > 0 && ray.angle < M_PI;
-	rays[n_ray].is_up = !ray.is_down;
-	rays[n_ray].is_right = ray.angle >= (M_PI * 3 / 2) ||
+	g_rays[n_ray].angle = angle;
+	g_rays[n_ray].is_down = ray.angle > 0 && ray.angle < M_PI;
+	g_rays[n_ray].is_up = !ray.is_down;
+	g_rays[n_ray].is_right = ray.angle >= (M_PI * 3 / 2) ||
 		ray.angle <= (M_PI / 2);
-	rays[n_ray].is_left = !ray.is_right;
+	g_rays[n_ray].is_left = !ray.is_right;
 	return (ray);
 }
 
@@ -81,18 +80,17 @@ static	void	cast_ray(t_ray ray, int ray_count)
 
 	vert = vertical_intersections(ray);
 	horz = horizontal_intersections(ray);
-	rays[ray_count].wall_hit.x = ((horz.found_horz_wall &&
+	g_rays[ray_count].wall_hit.x = ((horz.found_horz_wall &&
 			(horz.dist < vert.dist))) ? horz.wall_hit_x : vert.wall_hit_x;
-	rays[ray_count].wall_hit.y = ((horz.found_horz_wall &&
+	g_rays[ray_count].wall_hit.y = ((horz.found_horz_wall &&
 			(horz.dist < vert.dist))) ? horz.wall_hit_y : vert.wall_hit_y;
-	rays[ray_count].dist = (horz.dist < vert.dist) ? horz.dist : vert.dist;
-
+	g_rays[ray_count].dist = (horz.dist < vert.dist) ? horz.dist : vert.dist;
 	if (vert.i_sp >= 0 || horz.i_sp >= 0)
-		get_sprites(vert, horz, rays[ray_count].dist);
+		get_sprites(vert, horz, g_rays[ray_count].dist);
 	if (vert.dist < horz.dist)
-		rays[ray_count].was_hit_vertical = 1;
+		g_rays[ray_count].was_hit_vertical = 1;
 	else
-		rays[ray_count].was_hit_vertical = 0;
+		g_rays[ray_count].was_hit_vertical = 0;
 	if (vert.sprite && horz.sprite)
 	{
 		free(vert.sprite);
@@ -105,13 +103,13 @@ void			ft_castallrays(void)
 	int i;
 
 	i = 1;
-	rays[0].angle = normalize_angle(player.rotationAngle - ((FOV_ANGLE) / 2));
-	cast_ray(direction_ray(rays[0].angle, 0), 0);
+	g_rays[0].angle = normalize_angle(g_player.rotationangle - ((FOV_ANGLE) / 2));
+	cast_ray(direction_ray(g_rays[0].angle, 0), 0);
 	while (i < g_num_rays)
 	{
-		rays[i].angle = normalize_angle(rays[i - 1].angle +
+		g_rays[i].angle = normalize_angle(g_rays[i - 1].angle +
 		((FOV_ANGLE) / g_num_rays));
-		cast_ray(direction_ray(rays[i].angle, i), i);
+		cast_ray(direction_ray(g_rays[i].angle, i), i);
 		i++;
 	}
 }

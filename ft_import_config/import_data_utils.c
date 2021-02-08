@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/21 17:01:22 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/02 11:13:03 by zsidki           ###   ########.fr       */
+/*   Created: 2021/02/08 15:37:42 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/08 16:54:09 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ int				is_player(char c)
 static	void	oriontation_player(char c)
 {
 	if (c == 'N')
-		player.rotationAngle = M_PI * 3 / 2;
+		g_player.rotationangle = M_PI * 3 / 2;
 	if (c == 'S')
-		player.rotationAngle = M_PI / 2;
+		g_player.rotationangle = M_PI / 2;
 	if (c == 'E')
-		player.rotationAngle = 0;
+		g_player.rotationangle = 0;
 	if (c == 'W')
-		player.rotationAngle = M_PI;
+		g_player.rotationangle = M_PI;
 }
 
 void			get_position_player(char c, int pos_x, int pos_y)
 {
 	g_is_set.player = (g_is_set.player == 0) ?
-			1 : ft_perror("Duplicate player; Set One Position !");
+		1 : ft_perror("Duplicate player; Set One Position !");
 	oriontation_player(c);
-	player.x = (pos_y * g_tile) + (g_tile / 2);
-	player.y = (pos_x * g_tile) + (g_tile / 2);
+	g_player.x = (pos_y * g_tile) + (g_tile / 2);
+	g_player.y = (pos_x * g_tile) + (g_tile / 2);
 }
 
 int				is_all_elem(void)

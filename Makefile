@@ -24,7 +24,7 @@ SRC = 		main.c \
 			ft_utils/utils.c ft_utils/ft_get.c\
 			ft_ray_casting/ft_vertical.c ft_ray_casting/ft_horizontal.c \
 			ft_ray_casting/ft_rays.c \
-			my_pixel_put.c \
+			my_pixel_put.c ft_keys/deal_keytwo.c \
 			ft_renders/render_3d_utils.c \
 			ft_renders/render_3d.c sprites.c screenbmb.c\
 

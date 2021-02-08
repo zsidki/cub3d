@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rander_player.c                                 :+:      :+:    :+:   */
+/*   deal_keytwo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 15:41:35 by zsidki            #+#    #+#             */
+/*   Created: 2021/02/08 16:14:41 by zsidki            #+#    #+#             */
 /*   Updated: 2021/02/08 16:54:09 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_render_player(void)
+int				dealthree(int key)
 {
-	int i;
-	int j;
-	int x1;
-	int y1;
+	int x;
+	int y;
 
-	i = g_player.x;
-	j = g_player.y;
-	while (i <= PLAYERR + g_player.x)
+	if (key == 123)
+		g_player.rotationangle -= 5 * M_PI / 180;
+	if (key == 124)
+		g_player.rotationangle += 5 * M_PI / 180;
+	if (key == 13)
 	{
-		j = g_player.y;
-		while (j <= PLAYERR + g_player.y)
+		g_player.walkdirection = +1;
+		y = (g_player.y + 2 * WALKSTEP * sin(g_player.rotationangle)) / g_tile;
+		x = (g_player.x + 2 * WALKSTEP * cos(g_player.rotationangle)) / g_tile;
+		if (g_map.map[y][x] != '1')
 		{
-			my_pixel_put(g_img, i, j, 0xFF0000);
-			x1 = (g_player.x + PLAYERR) * cos(g_player.rotationangle);
-			y1 = (g_player.y + PLAYERR) * sin(g_player.rotationangle);
-			my_pixel_put(g_img, x1, y1, 0xFF0000);
-			j++;
+			g_player.y += WALKSTEP * sin(g_player.rotationangle);
+			g_player.x += WALKSTEP * cos(g_player.rotationangle);
 		}
-		i++;
 	}
 	return (0);
 }
