@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 15:46:15 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/08 17:08:17 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/02/10 15:58:03 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 # define PLAYERR 2
 # define WALKSTEP 3
-# define FOV_ANGLE 60 * (M_PI / 180)
+# define FOV_ANGLE 1.0471975512
 
 # include "mlx.h"
 # include <unistd.h>
@@ -256,5 +256,6 @@ void			sort_sprites(void);
 void			clear_sprites(void);
 void			ft_screenshot(void);
 int				dealthree(int key);
+void			check_maptwo(void);
 
 #endif

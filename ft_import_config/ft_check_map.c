@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsidki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 15:37:16 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/08 15:37:22 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/02/10 15:42:15 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,38 @@ void		check_map(void)
 		j = 0;
 		while (j++ < g_map.w)
 		{
-			if (i - 1 == 0 || j - 1 == 0 || i - 1 == g_map.h - 1 ||
-					j - 1 == g_map.w - 1)
-				if (g_map.map[i - 1][j - 1] == '0')
-					ft_perror("Invalid Map ; Brorders are Open  (Zero) !!");
+			check_maptwo();
 			if (g_map.map[i - 1][j - 1] == ' ')
 				if (!check_arr_space(i - 1, j - 1))
 					ft_perror("Invalid Map ; Brorders are Open (Space) !!");
+		}
+	}
+}
+
+void		check_maptwo(void)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i++ < g_map.h)
+	{
+		j = 0;
+		while (j++ < g_map.w)
+		{
+			if (i - 1 == 0 || j - 1 == 0 || i - 1 == g_map.h - 1 ||
+					j - 1 == g_map.w - 1)
+			{
+				if (g_map.map[i - 1][j - 1] == '0')
+					ft_perror("Invalid Map ; Brorders are Open  (Zero) !!");
+				if (g_map.map[i - 1][j - 1] == '2')
+					ft_perror("Invalid Map ; Brorders are Open  (SPRIT) !!");
+				if (g_map.map[i - 1][j - 1] == 'N'
+					|| g_map.map[i - 1][j - 1] == 'S'
+					|| g_map.map[i - 1][j - 1] == 'W'
+					|| g_map.map[i - 1][j - 1] == 'E')
+					ft_perror("INVALID map character !");
+			}
 		}
 	}
 }

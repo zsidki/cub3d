@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsidki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 15:46:50 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/08 15:46:52 by zsidki           ###   ########.fr       */
+/*   Created: 2019/11/10 15:15:26 by zsidki            #+#    #+#             */
+/*   Updated: 2021/02/11 16:46:27 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+# define BUFFER_SIZE 1024
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>

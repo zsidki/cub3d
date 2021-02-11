@@ -26,19 +26,25 @@ SRC = 		main.c \
 			ft_ray_casting/ft_rays.c \
 			my_pixel_put.c ft_keys/deal_keytwo.c \
 			ft_renders/render_3d_utils.c \
-			ft_renders/render_3d.c sprites.c screenbmb.c\
+			ft_renders/render_3d.c sprites.c screenbmb.c \
+			gnl/get_next_line_utils.c gnl/get_next_line.c \
+			
 
 all: $(NAME)
-$(NAME): 
-	@$(CC) -I. $(FLAGS) get_next_line.a libft.a $(SRC) -o $(NAME)
+$(NAME): $(SRC)
+	@cd libft ; make ; cd ..
+	@$(CC) -I. $(FLAGS) libft/libft.a $(SRC) -o $(NAME)
 
-clean: 
+clean:
+	@cd libft ; make clean ; cd ..
 	@rm -rf $(NAME)
 
 fclean: clean
+	@cd libft ; make fclean ; cd ..
 	@rm -rf $(NAME)
 
-re: fclean all
+re: fclean 
+	@make all
 
 push:
 	@git add .

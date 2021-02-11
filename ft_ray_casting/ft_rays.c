@@ -6,7 +6,7 @@
 /*   By: zsidki <zsidki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 15:42:31 by zsidki            #+#    #+#             */
-/*   Updated: 2021/02/08 16:54:09 by zsidki           ###   ########.fr       */
+/*   Updated: 2021/02/11 16:54:14 by zsidki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ void			ft_castallrays(void)
 	int i;
 
 	i = 1;
-	g_rays[0].angle = normalize_angle(g_player.rotationangle - ((FOV_ANGLE) / 2));
+	g_rays[0].angle = normalize_angle(g_player.rotationangle -
+	((FOV_ANGLE) / 2));
 	cast_ray(direction_ray(g_rays[0].angle, 0), 0);
 	while (i < g_num_rays)
 	{
